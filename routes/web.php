@@ -1,5 +1,5 @@
 <?php
 
 Route::get('/', function () {
-    return 'welcome';
+    return 'Welcome';
 });
