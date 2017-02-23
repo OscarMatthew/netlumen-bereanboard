@@ -1,5 +1,5 @@
 <?php
 
 Route::get('/', function () {
-    return 'Welcome';
+    return 'Under construction...';
 });
