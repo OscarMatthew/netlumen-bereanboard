@@ -9,8 +9,8 @@ class Alert
 {
     public static function slack($message)
     {
-        //if (App::environment() === 'production') {
+        if (App::environment() === 'production') {
             dispatch((new SendToSlack($message))->onQueue('slack-alert'));
-        //}
+        }
     }
 }
