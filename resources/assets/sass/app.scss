@@ -31,3 +31,23 @@
     color: #777;
     border: 1px solid #bbb;
 }
+
+.label {
+    display: inline-block;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 0 6px;
+}
+
+.label-success {
+    background: $success_btn_default_color;
+}
+
+.label-gray {
+    background: $gray_btn_default_color;
+}
+
+.label-primary {
+    background: $primary_btn_default_color;
+}
