@@ -51,9 +51,8 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="twelve columns" style="padding-top: 20px;">
+                <div class="twelve columns" style="padding-top: 20px; padding-bottom: 80px;">
                     @yield('content')
-                    <hr style="margin-bottom: 50px;">
                 </div>
             </div>
         </div>
