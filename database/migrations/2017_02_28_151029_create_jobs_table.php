@@ -15,7 +15,7 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('queue', 50);
+            $table->string('queue');
             $table->longText('payload');
             $table->tinyInteger('attempts')->unsigned();
             $table->unsignedInteger('reserved_at')->nullable();
