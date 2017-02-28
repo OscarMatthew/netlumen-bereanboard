@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Parsedown;
 
-class MarkDown
+class Markdown
 {
     public static function parse($md)
     {

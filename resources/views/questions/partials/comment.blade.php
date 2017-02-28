@@ -1,5 +1,5 @@
 <div id="comment-div-{{ $comment->id }}">
-    <span id="comment-body-{{ $comment->id }}">{!! MarkDown::lite($comment->body) !!}</span>
+    <span id="comment-body-{{ $comment->id }}">{!! Markdown::lite($comment->body) !!}</span>
     <span style="color: #888;">
         {{ $comment->author->username }}
         {{ $comment->created_at->diffForHumans() }}

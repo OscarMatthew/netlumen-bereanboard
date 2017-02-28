@@ -3,7 +3,7 @@
 @section('content')
     <div id="question-div">
         <h3 id="question-title">{{ $question->title }}</h3>
-        <div id="question-body">{!! MarkDown::parse($question->body) !!}</div>
+        <div id="question-body">{!! Markdown::parse($question->body) !!}</div>
         <p>
             asked by {{ $question->author->username }} {{ $question->created_at->diffForHumans() }}
             @can('edit-question', $question)

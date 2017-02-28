@@ -1,5 +1,5 @@
 <div id="answer-div-{{ $answer->id }}">
-    <div id="answer-body-{{ $answer->id }}">{!! MarkDown::parse($answer->body) !!}</div>
+    <div id="answer-body-{{ $answer->id }}">{!! Markdown::parse($answer->body) !!}</div>
     <p>
         answered by {{ $answer->author->username }} {{ $answer->created_at->diffForHumans() }}
         @can('edit-answer', $answer)
