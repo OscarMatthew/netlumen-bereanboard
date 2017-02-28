@@ -5,7 +5,15 @@
         <h3 id="question-title">{{ $question->title }}</h3>
         <div id="question-body">{!! Markdown::parse($question->body) !!}</div>
         <p>
-            asked by {{ $question->author->username }} {{ $question->created_at->diffForHumans() }}
+            asked by
+            {{ $question->author->username }}
+            @if ($question->author->role !== 'user')
+                <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}">
+                    {{ $question->author->role }}
+                </span>
+            @endif
+            {{ $question->created_at->diffForHumans() }}
+
             @can('edit-question', $question)
                 <a style="cursor: pointer; margin-left: 15px;" onclick="$('#question-div').hide();$('#edit-question').fadeIn()">edit</a>
             @endcan
