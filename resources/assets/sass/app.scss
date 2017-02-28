@@ -1,1 +1,33 @@
-// sass
+@import '../bootstrap/app.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+.login-signup {
+	width: 240px;
+	display: inline-block;
+}
+
+.login-signup-wrapper {
+	margin-top: 40px;
+	text-align: center;
+}
+
+.login-signup input, .login-signup button {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.btn-format {
+    color: #777;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 30px;
+    background: #fff;
+}
+
+.btn-format:hover {
+    color: #777;
+    border: 1px solid #bbb;
+}

@@ -1,0 +1,74 @@
+$container_width: 1000px;
+$container_collapse_width: 700px;
+
+$pre_navbar_color: #555;
+$pre_navbar_height: 4px;
+$post_navbar_color: #eee;
+$post_navbar_height: 0px;
+
+$navbar_height: 55px;
+$navbar_bg_color: #888;
+$navbar_link_color: #e5e5e5;
+$navbar_link_hover_color: #fff;
+
+$link_color: #64B5F6;
+$link_hover_color: #2696f2;
+
+
+/* Other
+--------------------------------------------------------------- */
+$border_radius: 5px;
+
+
+/* Buttons
+--------------------------------------------------------------- */
+$primary_btn_default_color: #0275d8;
+$primary_btn_hover_color: #025aa5;
+$primary_btn_disabled_color: #3771a4;
+
+$success_btn_default_color: #5cb85c;
+$success_btn_hover_color: #449d44;
+$success_btn_disabled_color: #72a172;
+
+$info_btn_default_color: #5bc0de;
+$info_btn_hover_color: #31b0d5;
+$info_btn_disabled_color: #74b1c3;
+
+$warning_btn_default_color: #f0ad4e;
+$warning_btn_hover_color: #ec971f;
+$warning_btn_disabled_color: #caa572;
+
+$danger_btn_default_color: #d9534f;
+$danger_btn_hover_color: #c9302c;
+$danger_btn_disabled_color: #c46764;
+
+$gray_btn_default_color: #888;
+$gray_btn_hover_color: #666;
+$gray_btn_disabled_color: #aaa;
+
+
+/* Alerts
+--------------------------------------------------------------- */
+$success_alert_background_color: #dff0d8;
+$success_alert_border_color: #d0e9c6;
+$success_alert_text_color: #3c763d;
+
+$info_alert_background_color: #d9edf7;
+$info_alert_border_color: #bcdff1;
+$info_alert_text_color: #31708f;
+
+$warning_alert_background_color: #fcf8e3;
+$warning_alert_border_color: #faf2cc;
+$warning_alert_text_color: #8a6d3b;
+
+$danger_alert_background_color: #f2dede;
+$danger_alert_border_color: #ebcccc;
+$danger_alert_text_color: #a94442;
+
+
+/* Callouts
+--------------------------------------------------------------- */
+$success_callout_border_color: #86c66c;
+$info_callout_border_color: #57afdb;
+$warning_callout_border_color: #f4e28b;
+$danger_callout_border_color: #c66c6c;
