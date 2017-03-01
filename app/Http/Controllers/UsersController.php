@@ -8,7 +8,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:manage-users');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -36,6 +36,8 @@ class UsersController extends Controller
 
     public function update(User $user)
     {
+        $this->authorize('can:edit-users');
+
         if (null !== request('active')) {
             $user->active = request('active');
         }

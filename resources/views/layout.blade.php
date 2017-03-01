@@ -29,9 +29,7 @@
 
                         <ul class="nav nav-right">
                             @if (Auth::check())
-                                @can('manage-users')
-                                    <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="/users">Users</a></li>
-                                @endcan
+                                <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="/users">Users</a></li>
                                 <li>
                                     <a class="show-dropdown">{{ Auth::user()->username }}<i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul class="dropdown">
