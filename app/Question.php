@@ -20,7 +20,12 @@ class Question extends Model
     {
         return $this->hasMany(Comment::class);
     }
-    
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
     public function slug()
     {
         return str_replace([' ', ':'], '-', preg_replace('/[^a-z0-9\s:]/', '', strtolower($this->title)));

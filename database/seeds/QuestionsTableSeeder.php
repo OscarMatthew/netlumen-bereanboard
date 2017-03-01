@@ -14,11 +14,12 @@ class QuestionsTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             DB::table('questions')->insert([
                 'title' => str_replace('.', '', $faker->sentence(rand(7, 10))).'?',
                 'body' => $faker->text(rand(20, 1000)),
-                'user_id' => rand(1, 10),
+                'user_id' => rand(1, 100),
+                'views' => rand(0, 10),
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime()
             ]);

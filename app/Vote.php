@@ -4,7 +4,7 @@ namespace App;
 
 use App\Model;
 
-class Answer extends Model
+class Vote extends Model
 {
     public function author()
     {
@@ -16,13 +16,13 @@ class Answer extends Model
         return $this->belongsTo(Question::class, 'question_id');
     }
 
-    public function comments()
+    public function answer()
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Answer::class, 'answer_id');
     }
 
-    public function votes()
+    public function comment()
     {
-        return $this->hasMany(Vote::class);
+        return $this->belongsTo(Comment::class, 'comment_id');
     }
 }

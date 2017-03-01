@@ -20,4 +20,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Answer::class, 'answer_id');
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }

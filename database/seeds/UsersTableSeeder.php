@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => new \DateTime()
         ]);
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 99; $i++) {
             DB::table('users')->insert([
                 'username' => $faker->firstName().$faker->lastName(),
                 'email' => $faker->email(),
