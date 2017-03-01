@@ -5,7 +5,6 @@
         <h3 id="question-title">{{ $question->title }}</h3>
         <div id="question-body">{!! Markdown::parse($question->body) !!}</div>
         <p>
-            asked by
             <a href="/users/{{ $question->author->id }}">{{ $question->author->username }}</a>
             @if ($question->author->role !== 'user')
                 <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
@@ -47,16 +46,17 @@
     @endcan
     <div class="row">
         <div class="ten columns offset-by-two">
-            <div id="answer-comments-div">
+            <div id="question-comments-div">
                 @foreach ($question->comments as $comment)
                     @include('questions.partials.comment')
                 @endforeach
             </div>
             @if (Auth::check())
-                <a style="cursor: pointer;" onclick="$('#submit-question-comment').fadeIn()">add comment</a>
+                <a style="cursor: pointer;" id="add-question-comment-link" onclick="$(this).hide();$('#submit-question-comment').fadeIn()">add comment</a>
                 <div id="submit-question-comment" style="display: none;">
                     <textarea id="submit-question-comment-body-textarea" name="body" placeholder="type your comment here" style="height: 100px;"></textarea>
-                    <button class="btn btn-primary" onclick="submitQuestionComment({{ $question->id }})">Submit Comment</button>
+                    <button class="btn btn-primary" onclick="submitQuestionComment({{ $question->id }})" style="float: right;">Submit Comment</button>
+                    <button class="btn btn-gray" onclick="$('#submit-question-comment').fadeOut(function () { $('#add-question-comment-link').show() })">Cancel</button>
                 </div>
             @endif
         </div>
@@ -76,8 +76,6 @@
             <textarea id="submit-answer-body-textarea" name="body" placeholder="type your answer here" style="height: 200px;"></textarea>
             <button class="btn btn-primary" onclick="submitAnswer()">Submit Answer</button>
         </div>
-    @else
-        <p>Login to answer this question.</p>
     @endif
 
 @endsection
@@ -172,7 +170,7 @@
     function submitQuestionComment(question_id) {
         $('#submit-question-comment').fadeTo(0)
         $.post('/comments', { _token: '{{ csrf_token() }}', question_id: question_id, answer_id: null, body: $('#submit-question-comment-body-textarea').val() }, function (response) {
-            $('#answer-comments-div').append('<div style="display: none;" class="new-comment">' + response + '</div>')
+            $('#question-comments-div').append('<div style="display: none;" class="new-comment">' + response + '</div>')
             $('#submit-question-comment').find('.alert').fadeOut(function () { $(this).remove() })
             $('#submit-question-comment-body-textarea').val('')
             $('#submit-question-comment').fadeOut(function() {
@@ -184,6 +182,26 @@
                 $.each(data, function (index, data) {
                     $('#submit-question-comment').prepend(dangerAlert.replace('_message_', data))
                     $('#submit-question-comment').find('.alert').fadeIn()
+                })
+            })
+        })
+    }
+
+    function submitAnswerComment(answer_id) {
+        $('#submit-question-comment-' + answer_id).fadeTo(0)
+        $.post('/comments', { _token: '{{ csrf_token() }}', question_id: null, answer_id: answer_id, body: $('#submit-answer-comment-body-textarea-' + answer_id).val() }, function (response) {
+            $('#answer-comments-div-' + answer_id).append('<div style="display: none;" class="new-comment">' + response + '</div>')
+            $('#submit-answer-comment-' + answer_id).find('.alert').fadeOut(function () { $(this).remove() })
+            $('#submit-answer-comment-body-textarea-' + answer_id).val('')
+            $('#submit-answer-comment-' + answer_id).fadeOut(function() {
+                $('.new-comment').fadeIn()
+            })
+        }).fail(function (data) {
+            $('#submit-answer-comment-' + answer_id).find('.alert').fadeOut(function () { $(this).remove() })
+            $.each(JSON.parse(data.responseText), function (key, data) {
+                $.each(data, function (index, data) {
+                    $('#submit-answer-comment-' + answer_id).prepend(dangerAlert.replace('_message_', data))
+                    $('#submit-answer-comment-' + answer_id).find('.alert').fadeIn()
                 })
             })
         })

@@ -45,7 +45,6 @@ class UsersController extends Controller
 
         if (null !== request('username')) $user->username = request('username');
         if (null !== request('email')) $user->email = request('email');
-        if (null !== request('active')) $user->active = request('active');
         if (null !== request('role')) $user->role = request('role');
 
         $user->save();
