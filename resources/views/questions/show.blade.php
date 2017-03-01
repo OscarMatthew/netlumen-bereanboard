@@ -4,19 +4,19 @@
     <div id="question-div">
         <h3 id="question-title">{{ $question->title }}</h3>
         <div id="question-body">{!! Markdown::parse($question->body) !!}</div>
-        <p>
-            <a href="/users/{{ $question->author->id }}">{{ $question->author->username }}</a>
-            @if ($question->author->role !== 'user')
-                <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
-                    {{ $question->author->role }}
-                </span>
-            @endif
-            {{ $question->created_at->diffForHumans() }}
+        <button class="btn btn-gray" onclick="voteQuestion()">Vote</button>
+        <a href="/users/{{ $question->author->id }}">{{ $question->author->username }}</a>
+        @if ($question->author->role !== 'user')
+            <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
+                {{ $question->author->role }}
+            </span>
+        @endif
+        {{ $question->created_at->diffForHumans() }}
 
-            @can('edit-question', $question)
-                <a style="cursor: pointer; margin-left: 15px;" onclick="$('#question-div').hide();$('#edit-question').fadeIn()">edit</a>
-            @endcan
-        </p>
+        @can('edit-question', $question)
+            <a style="cursor: pointer; margin-left: 15px;" onclick="$('#question-div').hide();$('#edit-question').fadeIn()">edit</a>
+        @endcan
+
     </div>
     @can('edit-question', $question)
         <div id="edit-question" style="display: none;">
@@ -231,6 +231,13 @@
         $('#edit-comment-' + id).fadeTo(0)
         $.post('/comments/' + id, { _token: '{{ csrf_token() }}', _method: 'delete' }, function () {
             $('#edit-comment-' + id).slideUp()
+        })
+    }
+
+    function voteQuestion() {
+        $.post('/votes', { _token: '{{ csrf_token() }}', question_id: {{ $question->id }} }, function (response) {
+            alert(response);
+
         })
     }
 

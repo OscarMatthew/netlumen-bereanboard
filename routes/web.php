@@ -17,6 +17,8 @@ Route::post('/comments', 'CommentsController@store');
 Route::delete('/comments/{comment}', 'CommentsController@destroy');
 Route::put('/comments/{comment}', 'CommentsController@update');
 
+Route::post('/votes', 'VotesController@store');
+
 Route::get('/email', 'EmailController@create');
 Route::post('/email', 'EmailController@send');
 Route::get('/email-sent', 'EmailController@sent');

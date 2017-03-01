@@ -15,16 +15,7 @@ class UsersTableSeeder extends Seeder
         $faker = Faker::create();
         $roles = ['user', 'moderator'];
 
-        DB::table('users')->insert([
-            'username' => 'trvshrmn',
-            'email' => 'trvshrmn@gmail.com',
-            'role' => 'admin',
-            'password' => bcrypt('asdfasdf'),
-            'created_at' => new \DateTime(),
-            'updated_at' => new \DateTime()
-        ]);
-
-        for ($i = 0; $i < 99; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             DB::table('users')->insert([
                 'username' => $faker->firstName().$faker->lastName(),
                 'email' => $faker->email(),
@@ -34,5 +25,14 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => new \DateTime()
             ]);
         }
+
+        DB::table('users')->insert([
+            'username' => 'user',
+            'email' => 'user@gmail.com',
+            'role' => 'admin',
+            'password' => bcrypt('asdfasdf'),
+            'created_at' => new \DateTime(),
+            'updated_at' => new \DateTime()
+        ]);
     }
 }
