@@ -13,9 +13,9 @@
                         {{ count($question->answers) }}<br>
                         answer{{ count($question->answers) !== 1 ? 's' : '' }}
                     </td>
-                    <td style="text-align: center; vertical-align: top;">
-                        {{ count($question->answers) }}<br>
-                        view{{ count($question->answers) !== 1 ? 's' : '' }}
+                    <td style="text-align: center; vertical-align: top;" class="{{ $question->views > 0 ? 'color-success' : '' }} {{ $question->views > 100 ? 'color-warning' : '' }} {{ $question->views > 1000 ? 'color-danger' : '' }}">
+                        {{ $question->views }}<br>
+                        view{{ $question->views !== 1 ? 's' : '' }}
                     </td>
                     <td>
                         <div>
