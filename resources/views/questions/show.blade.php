@@ -6,7 +6,7 @@
         <div id="question-body">{!! Markdown::parse($question->body) !!}</div>
         <p>
             asked by
-            {{ $question->author->username }}
+            <a href="/users/{{ $question->author->id }}">{{ $question->author->username }}</a>
             @if ($question->author->role !== 'user')
                 <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
                     {{ $question->author->role }}

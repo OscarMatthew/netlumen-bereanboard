@@ -1,12 +1,18 @@
 <div id="comment-div-{{ $comment->id }}">
     <span id="comment-body-{{ $comment->id }}">{!! Markdown::lite($comment->body) !!}</span>
     <span style="color: #888;">
-        {{ $comment->author->username }}
+        <a href="/users/{{ $comment->author->id }}">{{ $comment->author->username }}</a>
+        @if ($comment->author->role !== 'user')
+            <span class="label label-{{ $comment->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
+                {{ $comment->author->role }}
+            </span>
+        @endif
         {{ $comment->created_at->diffForHumans() }}
         @can('edit-comment', $comment)
             <a style="cursor: pointer; margin-left: 15px;" onclick="$('#comment-div-{{ $comment->id }}').hide();$('#edit-comment-{{ $comment->id }}').fadeIn()">edit</a>
         @endcan
     </span>
+    <hr>
 </div>
 @can('edit-comment', $comment)
     <div id="edit-comment-{{ $comment->id }}" style="display: none;">

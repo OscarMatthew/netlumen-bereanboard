@@ -1,7 +1,14 @@
 <div id="answer-div-{{ $answer->id }}">
     <div id="answer-body-{{ $answer->id }}">{!! Markdown::parse($answer->body) !!}</div>
     <p>
-        answered by {{ $answer->author->username }} {{ $answer->created_at->diffForHumans() }}
+        answered by
+        <a href="/users/{{ $answer->author->id }}">{{ $answer->author->username }}</a>
+        @if ($answer->author->role !== 'user')
+            <span class="label label-{{ $answer->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
+                {{ $answer->author->role }}
+            </span>
+        @endif
+        {{ $answer->created_at->diffForHumans() }}
         @can('edit-answer', $answer)
             <a style="cursor: pointer; margin-left: 15px;" onclick="$('#answer-div-{{ $answer->id }}').hide();$('#edit-answer-{{ $answer->id }}').fadeIn()">edit</a>
         @endcan

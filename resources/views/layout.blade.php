@@ -32,7 +32,7 @@
                                 <li>
                                     <a class="show-dropdown">{{ Auth::user()->username }}<i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul class="dropdown">
-                                        <li><a href="/account">Account</a></li>
+                                        <li><a href="/users/{{ Auth::user()->id }}">Profile</a></li>
                                         <li><a href="/logout">Logout</a></li>
                                     </ul>
                                 </li>

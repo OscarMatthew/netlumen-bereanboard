@@ -17,16 +17,12 @@ Route::post('/comments', 'CommentsController@store');
 Route::delete('/comments/{comment}', 'CommentsController@destroy');
 Route::put('/comments/{comment}', 'CommentsController@update');
 
-Route::get('/account', 'AccountController@show');
-Route::post('/account/change-email', 'AccountController@changeEmail');
-Route::post('/account/change-password', 'AccountController@changePassword');
-Route::post('/account/deactivate-account', 'AccountController@deactivateAccount');
-
 Route::get('/email', 'EmailController@create');
 Route::post('/email', 'EmailController@send');
 Route::get('/email-sent', 'EmailController@sent');
 
 Route::get('/users', 'UsersController@index');
+Route::get('/users/{user}', 'UsersController@show');
 Route::patch('/users/{user}', 'UsersController@update');
 
 Route::get('/login', 'SessionsController@create')->name('login');
