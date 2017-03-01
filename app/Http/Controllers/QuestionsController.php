@@ -14,7 +14,7 @@ class QuestionsController extends Controller
 
     public function index()
     {
-        $questions = Question::latest()->get();
+        $questions = Question::latest()->limit(100)->get();
         return view('questions.index', compact('questions'));
     }
 

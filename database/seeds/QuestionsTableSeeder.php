@@ -13,11 +13,11 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        DB::table('questions')->delete();
-        for ($i = 0; $i < 20; $i++) {
+
+        for ($i = 0; $i < 100; $i++) {
             DB::table('questions')->insert([
-                'title' => str_replace('.', '', $faker->sentence(rand(7, 15))).'?',
-                'body' => $faker->text(rand(20, 2500)),
+                'title' => str_replace('.', '', $faker->sentence(rand(7, 10))).'?',
+                'body' => $faker->text(rand(20, 1000)),
                 'user_id' => rand(1, 10),
                 'created_at' => new \DateTime(),
                 'updated_at' => new \DateTime()

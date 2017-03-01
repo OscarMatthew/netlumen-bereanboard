@@ -43,10 +43,30 @@ class UsersController extends Controller
     {
         $this->authorize('edit-user', $user);
 
-        if (null !== request('username')) $user->username = request('username');
-        if (null !== request('email')) $user->email = request('email');
-        if (null !== request('role')) $user->role = request('role');
-        if (null !== request('active')) $user->active = request('active');
+        if (request()->has('email')) {
+            $this->validate(request(), [
+                'email' => 'required|email|unique:users'
+            ]);
+            $user->email = request('email');
+        }
+        if (request()->has('role')) {
+            $this->validate(request(), [
+                'role' => 'required|string'
+            ]);
+            $user->role = request('role');
+        }
+        if (request()->has('active')) {
+            $this->validate(request(), [
+                'active' => 'required|boolean'
+            ]);
+            $user->active = request('active');
+        }
+        if (request()->has('password')) {
+            $this->validate(request(), [
+                'password' => 'required|min:6|confirmed'
+            ]);
+            $user->password = bcrypt(request('password'));
+        }
 
         $user->save();
 

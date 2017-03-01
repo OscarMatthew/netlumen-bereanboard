@@ -14,8 +14,6 @@ class CommentsTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        DB::table('comments')->delete();
-
         for ($i = 0; $i < 50; $i++) {
             DB::table('comments')->insert([
                 'body' => $faker->sentence(rand(5, 30)),

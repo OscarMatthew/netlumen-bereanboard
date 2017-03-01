@@ -2,6 +2,7 @@
 
 @section('content')
     @include('partials.errors')
+    @include('partials.success')
 
     <p style="margin-bottom: 15px;">
         {{ $user->username }}{{ $user->active === 0 ? '\'s account has been deactivated.' : '' }}
@@ -11,7 +12,7 @@
             </span>
         @endif
         @can('edit-users')
-            @can('edit-user', $user)
+            @if($user->role !== 'admin')
                 <a style="cursor: pointer;" modal="cr-modal">change role</a>
                 <div class="modal" id="cr-modal">
                     <div class="modal-content small">
@@ -23,8 +24,8 @@
                                 {{ method_field('patch') }}
                                 {{ csrf_field() }}
                                 <select name="role" style="width: 100%; box-sizing: border-box;">
-                                    <option value="user">user</option>
-                                    <option value="moderator">moderator</option>
+                                    <option value="user"{{ $user->role === 'user' ? ' selected' : '' }}>user</option>
+                                    <option value="moderator"{{ $user->role === 'moderator' ? ' selected' : '' }}>moderator</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary" style="float: right;">Change Role</button>
                                 <button type="reset" class="btn btn-gray close-modal" style="margin-right: 15px;">Cancel</button>
@@ -32,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-            @endcan
+            @endif
         @endcan
     </p>
     @can('edit-user', $user)
@@ -49,7 +50,7 @@
                     <form action="/users/{{ $user->id }}" method="post">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
-                        <input name="email" placeholder="new email" type="text" style="width: 100%; box-sizing: border-box;">
+                        <input name="email" placeholder="new email" type="email" style="width: 100%; box-sizing: border-box;" required>
                         <button type="submit" class="btn btn-primary" style="float: right;">Change Email</button>
                         <button type="reset" class="btn btn-gray close-modal" style="margin-right: 15px;">Cancel</button>
                     </form>
@@ -67,8 +68,8 @@
                     <form action="/users/{{ $user->id }}" method="post">
                         {{ method_field('patch') }}
                         {{ csrf_field() }}
-                        <input name="new_password" placeholder="new password" type="password" style="width: 100%; box-sizing: border-box;">
-                        <input name="new_password_confirmation" placeholder="confirm password" type="password" style="width: 100%; box-sizing: border-box;">
+                        <input name="password" placeholder="new password" type="password" style="width: 100%; box-sizing: border-box;" required>
+                        <input name="password_confirmation" placeholder="confirm password" type="password" style="width: 100%; box-sizing: border-box;" required>
                         <button type="submit" class="btn btn-primary" style="float: right;">Change Password</button>
                         <button type="reset" class="btn btn-gray close-modal" style="margin-right: 15px;">Cancel</button>
                     </form>

@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
         $faker = Faker::create();
         $roles = ['user', 'moderator'];
 
-        DB::table('users')->delete();
         DB::table('users')->insert([
             'username' => 'trvshrmn',
             'email' => 'trvshrmn@gmail.com',

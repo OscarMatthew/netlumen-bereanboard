@@ -14,8 +14,6 @@ class AnswersTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        DB::table('answers')->delete();
-
         for ($i = 0; $i < 80; $i++) {
             DB::table('answers')->insert([
                 'body' => $faker->text(rand(40, 500)),
