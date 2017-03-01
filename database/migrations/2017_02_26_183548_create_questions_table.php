@@ -19,13 +19,6 @@ class CreateQuestionsTable extends Migration
             $table->text('body')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-
-            // $table->integer('start_verse')->unsigned();
-            // $table->foreign('start_verse')->references('id')->on('verses');
-            //
-            // $table->integer('end_verse')->unsigned();
-            // $table->foreign('end_verse')->references('id')->on('verses');
-
             $table->timestamps();
         });
     }
