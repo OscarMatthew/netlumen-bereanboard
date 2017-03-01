@@ -10,27 +10,29 @@
                 {{ $user->role }}
             </span>
         @endif
-        @can('edit-user', $user)
-            <a style="cursor: pointer;" modal="cr-modal">change role</a>
-            <div class="modal" id="cr-modal">
-                <div class="modal-content small">
-                    <div class="modal-header">
-                        <h4>Change Role</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/users/{{ $user->id }}" method="post">
-                            {{ method_field('patch') }}
-                            {{ csrf_field() }}
-                            <select name="role" style="width: 100%; box-sizing: border-box;">
-                                <option value="user">user</option>
-                                <option value="moderator">moderator</option>
-                            </select>
-                            <button type="submit" class="btn btn-primary" style="float: right;">Change Role</button>
-                            <button type="reset" class="btn btn-gray close-modal" style="margin-right: 15px;">Cancel</button>
-                        </form>
+        @can('edit-users')
+            @can('edit-user', $user)
+                <a style="cursor: pointer;" modal="cr-modal">change role</a>
+                <div class="modal" id="cr-modal">
+                    <div class="modal-content small">
+                        <div class="modal-header">
+                            <h4>Change Role</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/users/{{ $user->id }}" method="post">
+                                {{ method_field('patch') }}
+                                {{ csrf_field() }}
+                                <select name="role" style="width: 100%; box-sizing: border-box;">
+                                    <option value="user">user</option>
+                                    <option value="moderator">moderator</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary" style="float: right;">Change Role</button>
+                                <button type="reset" class="btn btn-gray close-modal" style="margin-right: 15px;">Cancel</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endcan
         @endcan
     </p>
     @can('edit-user', $user)
