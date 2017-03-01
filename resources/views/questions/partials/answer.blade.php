@@ -41,15 +41,15 @@
             @foreach ($answer->comments as $comment)
                 @include('questions.partials.comment')
             @endforeach
-            @if (Auth::check())
-                <a style="cursor: pointer;" id="add-answer-comment-link-{{ $answer->id }}" onclick="$(this).hide();$('#submit-answer-comment-{{ $answer->id }}').fadeIn()">add comment</a>
-                <div id="submit-answer-comment-{{ $answer->id }}" style="display: none;">
-                    <textarea id="submit-answer-comment-body-textarea-{{ $answer->id }}" name="body" placeholder="type your comment here" style="height: 100px;"></textarea>
-                    <button class="btn btn-primary" onclick="submitAnswerComment({{ $answer->id }})" style="float: right;">Submit Comment</button>
-                    <button class="btn btn-gray" onclick="$('#submit-answer-comment-{{ $answer->id }}').fadeOut(function () { $('#add-answer-comment-link-{{ $answer->id }}').show() })">Cancel</button>
-                </div>
-            @endif
         </div>
+        @if (Auth::check())
+            <a style="cursor: pointer;" id="add-answer-comment-link-{{ $answer->id }}" onclick="$(this).hide();$('#submit-answer-comment-{{ $answer->id }}').fadeIn()">add comment</a>
+            <div id="submit-answer-comment-{{ $answer->id }}" style="display: none;">
+                <textarea id="submit-answer-comment-body-textarea-{{ $answer->id }}" name="body" placeholder="type your comment here" style="height: 100px;"></textarea>
+                <button class="btn btn-primary" onclick="submitAnswerComment({{ $answer->id }})" style="float: right;">Submit Comment</button>
+                <button class="btn btn-gray" onclick="$('#submit-answer-comment-{{ $answer->id }}').fadeOut(function () { $('#add-answer-comment-link-{{ $answer->id }}').show() })">Cancel</button>
+            </div>
+        @endif
     </div>
 </div>
 <hr>

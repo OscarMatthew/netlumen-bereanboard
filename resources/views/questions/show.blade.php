@@ -174,6 +174,7 @@
             $('#submit-question-comment').find('.alert').fadeOut(function () { $(this).remove() })
             $('#submit-question-comment-body-textarea').val('')
             $('#submit-question-comment').fadeOut(function() {
+                $('#add-question-comment-link').show()
                 $('.new-comment').fadeIn()
             })
         }).fail(function (data) {
@@ -194,6 +195,7 @@
             $('#submit-answer-comment-' + answer_id).find('.alert').fadeOut(function () { $(this).remove() })
             $('#submit-answer-comment-body-textarea-' + answer_id).val('')
             $('#submit-answer-comment-' + answer_id).fadeOut(function() {
+                $('#add-answer-comment-link-' + answer_id).show()
                 $('.new-comment').fadeIn()
             })
         }).fail(function (data) {
