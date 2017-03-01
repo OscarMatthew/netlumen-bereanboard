@@ -7,7 +7,6 @@
         <meta charset="utf-8">
         <meta name="description" content="Ask questions about the Bible, and answer questions from the community.">
         <title>BereanBoard</title>
-        @yield('head')
     </head>
     <body>
         <div class="navbar">
