@@ -5,9 +5,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/app.css">
         <meta charset="utf-8">
-        <meta name="description" content="Ask questions about the Bible.">
+        <meta name="description" content="Ask questions about the Bible, and answer questions from the community.">
         <title>BereanBoard</title>
-        @yield('head')
     </head>
     <body>
         <div class="navbar">
@@ -29,9 +28,7 @@
 
                         <ul class="nav nav-right">
                             @if (Auth::check())
-                                @can('manage-users')
-                                    <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="/users">Users</a></li>
-                                @endcan
+                                <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="/users">Users</a></li>
                                 <li>
                                     <a class="show-dropdown">{{ Auth::user()->username }}<i class="fa fa-fw fa-caret-down"></i></a>
                                     <ul class="dropdown">

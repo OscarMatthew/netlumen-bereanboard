@@ -8,7 +8,7 @@
             asked by
             {{ $question->author->username }}
             @if ($question->author->role !== 'user')
-                <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}">
+                <span class="label label-{{ $question->author->role === 'moderator' ? 'gray' : 'primary' }}" style="margin: 0 5px;">
                     {{ $question->author->role }}
                 </span>
             @endif
